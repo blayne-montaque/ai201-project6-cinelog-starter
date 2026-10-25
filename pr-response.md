@@ -52,7 +52,15 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Comment 6 — Rebase and UUID Migration
 
-Pending real rebase after the earlier review items are stable.
+[Original conversation comment](https://github.com/codepath/ai201-project6-cinelog-starter/pull/1#issuecomment-5062029097).
+
+**What conflicted:** After Comments 1–5 passed (9 tests), refreshed origin/main and upstream/main; both still matched local main at `57ec3f9052b21460800d89e4929f0584c4aacc11`. Saved `backup/before-main-rebase`, then ran **`git rebase upstream/main`**. Git stopped replaying original commit `9eafe68` with a genuine content conflict in `models.py`, specifically `WatchlistEntry.film_id`: main had `db.String(36)` while the feature had `db.Integer` plus `index=True`.
+
+**Resolution:** Kept main's UUID type and the feature's index: `db.Column(db.String(36), db.ForeignKey("film.id"), nullable=False, index=True)`. Retained main's UUID `Film.id`, `CollectionEntry.film_id`, and model documentation. Staged only the resolved model and ran `git -c core.editor=true rebase --continue`; all 11 commits replayed successfully, with no skip or merge. The model resolution necessarily belongs to the replayed original feature commit.
+
+**Separate UUID fix:** A meaningful follow-up updates the stale service/route integer contracts and adds request validation/normalization with `uuid.UUID`: integers and malformed IDs receive JSON 400; a valid but absent UUID receives 404. Uppercase UUID spelling resolves to the canonical stored string. This work has its own `fix:` commit naming UUID compatibility; it is not an empty commit added for appearance.
+
+**Verification:** Immediately after rebase: **9 passed**. New UUID API tests: **9 passed**; full suite after the follow-up: **18 passed**, with one existing `Film.query.get()` deprecation warning in the unchanged film route. Tests inspect generated UUIDs, stored SQLite text values and String(36) column types, preserved index, relationship lookup, POST, GET watchlist, and GET film. Existing fixtures generate IDs from real Film rows, so they automatically exercise UUIDs after the migration; the missing-film fixture already used a UUID. Conflict-marker search and `git diff --check` were clean. `git merge-base --is-ancestor upstream/main HEAD` succeeded; feature-only merge count is zero.
 
 ## Stretch Features
 
