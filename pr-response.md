@@ -14,7 +14,11 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Comment 2 — Deduplication
 
-Pending implementation.
+[Original inline comment](https://github.com/codepath/ai201-project6-cinelog-starter/pull/1#discussion_r3640497660).
+
+**What I did:** Followed `add_to_collection()` exactly in the important behavior: after confirming the film exists, its duplicate check queries `CollectionEntry` for the same `user_id` AND `film_id`; if found, it raises `AlreadyInCollectionError` without inserting or returning an existing row. `add_to_watchlist()` now queries `WatchlistEntry` for that pair and raises `AlreadyInWatchlistError`, preserving the original entry. A matching database unique constraint prevents duplicate stored pairs. The route follows `routes/collection.py`: missing film becomes JSON 404 and an existing entry becomes JSON 409.
+
+**How I verified:** `tests/test_watchlist_duplicates.py` checks the exception, reloads the database session, confirms one row with its original ID, and repeats real Flask POST requests (201 then 409) followed by GET. Targeted: **2 passed**; full suite: **6 passed**. Tests are committed separately per CONTRIBUTING.md.
 
 ## Comment 3 — Missing Test
 
