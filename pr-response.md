@@ -42,7 +42,13 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Comment 5 — Sort Order
 
-Pending source-grounded design decision.
+[Original inline comment](https://github.com/codepath/ai201-project6-cinelog-starter/pull/1#discussion_r3640497943).
+
+**Position:** Accept the reviewer's preference: `get_watchlist()` orders by `WatchlistEntry.date_added.desc()` (newest first), with entry ID ascending as a deterministic tie-breaker. The existing timestamp already records when a film was saved, so no new ranking field or dependency is necessary. This also matches `get_collection()`'s newest-first behavior.
+
+**Engagement and tradeoffs:** The reviewer is right that users often return to a film they just saved. Under the original `Film.title.asc()` query, a newly saved Zodiac appears after an old Alien, making the result of a successful add harder to find. Alphabetical order remains useful for scanning a long list by remembered title; newest-first sacrifices that stable title index. Oldest-first would surface neglected films, but would bury the recent additions the reviewer specifically wants visible. There is no priority or queue-position field supporting a meaningful custom ordering. We therefore choose recency now; title search or optional sorting can be a later product decision.
+
+**Verification:** `test_get_watchlist_newest_first_with_stable_ties` deliberately persists Alien on January 1 and Zodiac/Moon on January 2, using controlled entry UUIDs for equal timestamps. Service and GET both return Zodiac, Moon, Alien after session reload, distinguishing newest-first from alphabetical and oldest-first. Targeted: **3 passed**; full suite: **9 passed**. Codex considered the competing use cases and authored this source-grounded decision.
 
 ## Comment 6 — Rebase and UUID Migration
 
