@@ -42,12 +42,14 @@ def add_film(user_id):
     """
     POST /watchlist/<user_id>/add
 
-    Body: { "film_id": "<uuid>" }
+    Body: { "film_id": "<uuid>", "public": false } (public optional).
     """
     data = request.get_json()
     try:
         film_id = _parse_film_id(data)
-        entry = add_to_watchlist(user_id=user_id, film_id=film_id)
+        entry = add_to_watchlist(
+            user_id=user_id, film_id=film_id, public=data.get("public", False)
+        )
         return jsonify(entry.to_dict()), 201
     except ValueError as e:
         return jsonify({"error": str(e)}), 400

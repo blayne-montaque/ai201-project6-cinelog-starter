@@ -68,7 +68,7 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 **2. Independent stretch test:** `test_remove_from_watchlist_preserves_other_user` deliberately puts the same film on two users' watchlists and removes only one membership. This checks that both deduplication and removal are scoped to the user/film pair, rather than treating a film as globally unique or deleting another user's data. It reloads the database and verifies the other entry's ID, owner, and retained catalog film. Additional cases verify duplicates, UUID persistence, ordering, and missing removal.
 
-**3. Explicit visibility:** Implementation pending.
+**3. Explicit visibility:** `add_to_watchlist(user_id, film_id, public=False)` accepts an actual Boolean; POST reads `data.get("public", False)`, so omitted and explicit False remain distinct from invalid/null values. Model, service, and endpoint defaults agree. POST `{"film_id":"<uuid>","public":true}` or `{"film_id":"<uuid>","public":false}` returns the persisted preference with 201. Strings such as `"false"`, numbers (including 0/1), null, lists, and objects receive JSON 400 without an insert. This is an add-time preference, not an update endpoint: repeating a film with a different setting returns 409 and preserves the original. Remove/re-add permits changing it. Both Boolean values are checked after a new database session and GET; ten visibility cases pass. Full suite at this milestone: **34 passed**, one unchanged catalog-route deprecation warning.
 
 ## PR Description
 
