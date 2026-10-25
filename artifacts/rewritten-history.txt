@@ -1,0 +1,19 @@
+﻿f006e52a6690961671748f3badd2f230d6e065b1 feat: add watchlist service and REST endpoints
+7d8eea2cefae722b1c20498a96fb58aa6cafd26d fix: use shared database session for film lookups
+85dde52c4f8ab0b47540cf8360f5d5fc40540077 chore: prepare review documentation and repository hygiene
+1c258cb3d4f888c6da1629a7bc8910c1994ab63f fix: rename watchlist service to add_to_watchlist
+1fe2094ef31ace950c70255f9fd20d90ce3ba788 fix: reject duplicate watchlist entries consistently
+394400bd2d4098778e79fba68306326e053f829a test: verify repeated watchlist additions and HTTP conflicts
+81c22d4610efff186c513ba7b033ae3424a0f16f test: cover nonexistent film in add_to_watchlist
+6f7eed3be41718718045f0591b3be72ff4d3cfa2 fix: default watchlist sharing preference to private
+117f9d53b3c97c70ce7cfb9767bc1cfab819ea59 test: verify default watchlist visibility persistence
+061b3bc61e008edbad10ea4e62e3c5b453c0e40b fix: order watchlist by newest additions
+ccd6869c37563e3f586b85213eb5ecafa9ec7a45 test: distinguish watchlist recency from alphabetical order
+ec71f5fcb087bdd33671f9be97df4acf927cd176 fix: enforce UUID compatibility in watchlist requests
+1f8f92c35d09c7d0639a075206f6e35edae1033d test: verify persisted UUIDs and watchlist request validation
+4b7965161e130625463525de9f8189c25ef136d7 feat: remove films from a user watchlist
+d405e1b907d22f5176b37270a651ab58f924cdaf test: verify removal and independent user watchlists
+bf23115d7ebc28160bfdce508f3745bdbf98e912 feat: accept explicit watchlist visibility preferences
+b1cd2b4c1a8d0854698f6c0b7c19976cf6434fd1 test: validate visibility values and persistence
+5ac24281c4e55f792d884b1cb721ebfccc927d6d test: add repeatable live HTTP watchlist demonstration
+499866b01d28750cc69e07110a4908e37a40aef0 docs: explain review decisions and verified recording workflow

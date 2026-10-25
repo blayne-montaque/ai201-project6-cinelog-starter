@@ -91,7 +91,7 @@ I accepted the reviewer's newest-first ordering. Zodiac was added after Alien an
 
 The real rebase hit a conflict between main's UUID column and the feature's integer column with an index. The resolution preserved UUIDs and the index. A separate UUID fix and an interactive rebase produced this conventional history, with no merge commits.
 
-The full suite passes 34 tests, and this demonstration runs actual HTTP requests against an isolated database. The response document covers all six comments, all three stretch features, and includes the genuine terminal screenshot. The open pull request targets main within my own fork.”
+The full suite passes 34 tests, and this demonstration runs actual HTTP requests against an isolated database. The response document covers all six comments and all three stretch features. Its required terminal screenshot must be added manually because the computer-use runtime blocks PowerShell. The open pull request targets main within my own fork.”
 
 ## Recording checklist
 
@@ -100,6 +100,6 @@ The full suite passes 34 tests, and this demonstration runs actual HTTP requests
 3. Run the isolated demo; narrate add, duplicate, invalid film, true/false, ordering, and removal.
 4. Show the source-grounded visibility and sorting arguments.
 5. Show Comment 6 and the distinct UUID fix in git log.
-6. Show conventional history, zero merges, and the embedded real screenshot.
+6. Show conventional history and zero merges. Before final submission, capture the real terminal as artifacts/git-history.png and commit/push it using the steps in pr-response.md; then show the embedded image. This is the remaining graded deliverable.
 7. Show the open PR's correct fork/base/head and description.
 8. Submit the feature-branch URL through the course portal; do not submit just the repository root.

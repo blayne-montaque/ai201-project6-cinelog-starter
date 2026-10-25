@@ -1,0 +1,84 @@
+﻿499866b feature/watchlist@{0} rebase (finish): refs/heads/feature/watchlist onto 57ec3f9052b21460800d89e4929f0584c4aacc11
+499866b HEAD@{0} rebase (finish): returning to refs/heads/feature/watchlist
+499866b HEAD@{1} rebase (pick): docs: explain review decisions and verified recording workflow
+5ac2428 HEAD@{2} rebase (pick): test: add repeatable live HTTP watchlist demonstration
+b1cd2b4 HEAD@{3} rebase (pick): test: validate visibility values and persistence
+bf23115 HEAD@{4} rebase (pick): feat: accept explicit watchlist visibility preferences
+d405e1b HEAD@{5} rebase (pick): test: verify removal and independent user watchlists
+4b79651 HEAD@{6} rebase (pick): feat: remove films from a user watchlist
+1f8f92c HEAD@{7} rebase (pick): test: verify persisted UUIDs and watchlist request validation
+ec71f5f HEAD@{8} rebase (pick): fix: enforce UUID compatibility in watchlist requests
+ccd6869 HEAD@{9} rebase (pick): test: distinguish watchlist recency from alphabetical order
+061b3bc HEAD@{10} rebase (pick): fix: order watchlist by newest additions
+117f9d5 HEAD@{11} rebase (pick): test: verify default watchlist visibility persistence
+6f7eed3 HEAD@{12} rebase (pick): fix: default watchlist sharing preference to private
+81c22d4 HEAD@{13} rebase (pick): test: cover nonexistent film in add_to_watchlist
+394400b HEAD@{14} rebase (pick): test: verify repeated watchlist additions and HTTP conflicts
+1fe2094 HEAD@{15} rebase (pick): fix: reject duplicate watchlist entries consistently
+1c258cb HEAD@{16} rebase (pick): fix: rename watchlist service to add_to_watchlist
+85dde52 HEAD@{17} rebase (reword): chore: prepare review documentation and repository hygiene
+e971f36 HEAD@{18} rebase (reword): docs: record review workflow and original branch evidence
+7d8eea2 HEAD@{19} rebase (reword): fix: use shared database session for film lookups
+2548305 HEAD@{20} rebase (reword): fix: update film retrieval method to use db.session.get in collection and watchlist services
+f006e52 HEAD@{21} rebase (reword): feat: add watchlist service and REST endpoints
+2c7b0b7 HEAD@{22} rebase: fast-forward
+57ec3f9 HEAD@{23} rebase (start): checkout origin/main
+f6f5c7e backup/before-interactive-rebase@{0} branch: Created from feature/watchlist
+f6f5c7e feature/watchlist@{1} commit: docs: explain review decisions and verified recording workflow
+f6f5c7e HEAD@{24} commit: docs: explain review decisions and verified recording workflow
+01ddae5 feature/watchlist@{2} commit: test: add repeatable live HTTP watchlist demonstration
+01ddae5 HEAD@{25} commit: test: add repeatable live HTTP watchlist demonstration
+2e019ec feature/watchlist@{3} commit: test: validate visibility values and persistence
+bf0c025 feature/watchlist@{4} commit: feat: accept explicit watchlist visibility preferences
+2e019ec HEAD@{26} commit: test: validate visibility values and persistence
+bf0c025 HEAD@{27} commit: feat: accept explicit watchlist visibility preferences
+18acbc6 feature/watchlist@{5} commit: test: verify removal and independent user watchlists
+5a17647 feature/watchlist@{6} commit: feat: remove films from a user watchlist
+18acbc6 HEAD@{28} commit: test: verify removal and independent user watchlists
+5a17647 HEAD@{29} commit: feat: remove films from a user watchlist
+dc0c942 feature/watchlist@{7} commit: test: verify persisted UUIDs and watchlist request validation
+356e221 feature/watchlist@{8} commit: fix: enforce UUID compatibility in watchlist requests
+dc0c942 HEAD@{30} commit: test: verify persisted UUIDs and watchlist request validation
+356e221 HEAD@{31} commit: fix: enforce UUID compatibility in watchlist requests
+61bec14 feature/watchlist@{9} rebase (finish): refs/heads/feature/watchlist onto 57ec3f9052b21460800d89e4929f0584c4aacc11
+61bec14 HEAD@{32} rebase (finish): returning to refs/heads/feature/watchlist
+61bec14 HEAD@{33} rebase (pick): test: distinguish watchlist recency from alphabetical order
+83e8bca HEAD@{34} rebase (pick): fix: order watchlist by newest additions
+c13c833 HEAD@{35} rebase (pick): test: verify default watchlist visibility persistence
+0637c79 HEAD@{36} rebase (pick): fix: default watchlist sharing preference to private
+141cac5 HEAD@{37} rebase (pick): test: cover nonexistent film in add_to_watchlist
+fad371f HEAD@{38} rebase (pick): test: verify repeated watchlist additions and HTTP conflicts
+e064ba2 HEAD@{39} rebase (pick): fix: reject duplicate watchlist entries consistently
+e33c221 HEAD@{40} rebase (pick): fix: rename watchlist service to add_to_watchlist
+ef4b398 HEAD@{41} rebase (pick): docs: record review workflow and original branch evidence
+de7b2bd HEAD@{42} rebase (pick): fix: update film retrieval method to use db.session.get in collection and watchlist services
+2c7b0b7 HEAD@{43} rebase (continue): added watchlist model and endpoint fixed a bug more changes
+57ec3f9 HEAD@{44} rebase (start): checkout upstream/main
+1e78862 backup/before-main-rebase@{0} branch: Created from feature/watchlist
+1e78862 feature/watchlist@{10} commit: test: distinguish watchlist recency from alphabetical order
+6550b63 feature/watchlist@{11} commit: fix: order watchlist by newest additions
+1e78862 HEAD@{45} commit: test: distinguish watchlist recency from alphabetical order
+6550b63 HEAD@{46} commit: fix: order watchlist by newest additions
+57ec3f9 upstream@{0} fetch
+d82d166 feature/watchlist@{12} commit: test: verify default watchlist visibility persistence
+d06e26f feature/watchlist@{13} commit: fix: default watchlist sharing preference to private
+d82d166 HEAD@{47} commit: test: verify default watchlist visibility persistence
+d06e26f HEAD@{48} commit: fix: default watchlist sharing preference to private
+7d06ecd feature/watchlist@{14} commit: test: cover nonexistent film in add_to_watchlist
+7d06ecd HEAD@{49} commit: test: cover nonexistent film in add_to_watchlist
+ac5755a feature/watchlist@{15} commit: test: verify repeated watchlist additions and HTTP conflicts
+4f24c54 feature/watchlist@{16} commit: fix: reject duplicate watchlist entries consistently
+ac5755a HEAD@{50} commit: test: verify repeated watchlist additions and HTTP conflicts
+4f24c54 HEAD@{51} commit: fix: reject duplicate watchlist entries consistently
+870b2cc feature/watchlist@{17} commit: fix: rename watchlist service to add_to_watchlist
+870b2cc HEAD@{52} commit: fix: rename watchlist service to add_to_watchlist
+af28e3c backup/original-watchlist@{0} branch: Created from af28e3c
+1364e75 feature/watchlist@{18} commit: docs: record review workflow and original branch evidence
+1364e75 HEAD@{53} commit: docs: record review workflow and original branch evidence
+af28e3c feature/watchlist@{19} branch: Created from upstream/feature/watchlist
+af28e3c HEAD@{54} checkout: moving from main to feature/watchlist
+af28e3c upstream/feature/watchlist@{0} fetch upstream main feature/watchlist: storing head
+57ec3f9 upstream/main@{0} fetch upstream main feature/watchlist: storing head
+57ec3f9 main@{0} clone: from https://github.com/blayne-montaque/ai201-project6-cinelog-starter.git
+57ec3f9 origin@{0} clone: from https://github.com/blayne-montaque/ai201-project6-cinelog-starter.git
+57ec3f9 HEAD@{55} clone: from https://github.com/blayne-montaque/ai201-project6-cinelog-starter.git

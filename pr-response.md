@@ -117,8 +117,36 @@ CineLog's watchlist now reliably saves future watches, rejects repeated addition
 
 **Scope and disclosure:** This starter does not validate user existence or authorize callers; use seeded users. `create_all()` does not migrate old SQLite files, so use the fresh --prepare database. No API keys are needed. Codex performed the implementation, source-grounded design reasoning, testing, Git work, and documentation at the user's request. This is not a claim of independent human authorship or upstream approval.
 
-See [pr-response.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/pr-response.md) for the six substantive review responses, exact comment links, reasoning, genuine history screenshot, and evidence.
+See [pr-response.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/pr-response.md) for the six substantive review responses, exact comment links, reasoning, history evidence, and the required screenshot placeholder. **Remaining manual item:** capture `git log --oneline --decorate` on `feature/watchlist`, with the branch visible, as `artifacts/git-history.png`. The computer-use runtime blocked PowerShell, so no screenshot has been fabricated or claimed.
 
 ## Verification and Commit History
 
 Original branch and architecture are recorded in [orientation](artifacts/orientation.md).
+
+- Baseline: **4 passed**, no test failures. After rename: 4; deduplication: 6; missing-film case: 7; default visibility: 8; sort order: 9; real main rebase: 9; UUID follow-up: 18; removal: 24; explicit visibility: **34 passed**. Final suite after history rewriting also passed 34 tests. One existing catalog-route deprecation warning remains. [Final test output](artifacts/final-tests.txt).
+- [Actual isolated HTTP responses](artifacts/demo-http.txt) and [actual app.py HTTP responses](artifacts/app-py-http.txt) verify the project-supported startup and API behavior. Root 404 is expected. Neither file contains the development debugger PIN.
+- Backups exist locally: `backup/original-watchlist`, `backup/before-main-rebase`, and `backup/before-interactive-rebase`. Only feature/watchlist is intended for publication.
+- Real interactive cleanup: `git rebase -i origin/main` replayed **19 commits** and actually reworded three subjects: the original rough feature message, the long original session-lookup fix, and the setup commit (now correctly labeled chore because it includes .gitignore). No feature commit was dropped or squashed. Original authors were retained. The [saved interactive todo](artifacts/interactive-rebase-todo.txt) and [reflog](artifacts/git-workflow.txt) show the operations.
+- Before/after interactive rebase, the tree SHA was identical: `7e8b7fe5cd7a4df338d344163ae30ff72a822a31`. `git diff backup/before-interactive-rebase HEAD` was empty immediately afterward. The [rewritten commit list](artifacts/rewritten-history.txt) identifies the final code/test history; subsequent commits only add audit/publication evidence.
+- Codex reviewed the log against CONTRIBUTING.md's conventional format and one-logical-change rule. Original feature, rename (`1c258cb`), duplicate fix (`1fe2094`), requested test (`81c22d4`), UUID fix (`ec71f5f`), removal (`4b79651`), and explicit visibility (`bf23115`) remain separate. Test commits are separate as required by that contribution guide. `git rev-list --merges origin/main..HEAD` prints no commits, and the branch descends from main's UUID refactor.
+- `.gitignore` matches every requested pattern. No databases, environment files, caches, credentials, or virtual environments are tracked. No original collection tests were edited.
+
+### Required screenshot — outstanding manual step
+
+The supported computer-use runtime refused PowerShell with **“product policy blocks this app.”** Attempts to open a dedicated console through the shell did not expose a capturable window. No fake screenshot was created, and `artifacts/git-history.png` does not yet exist. The following is the required image link, intentionally retained for the real capture:
+
+![Clean conventional commit history on feature/watchlist](artifacts/git-history.png)
+
+To finish, open PowerShell in the repository, run the following, and use Windows Snipping Tool to capture the actual terminal with the branch name and log visible. Save the PNG at the exact image path, then commit and push it. One final screenshot documentation commit after capture is expected; no recursive screenshot/commit loop is needed.
+
+```powershell
+git branch --show-current
+git --no-pager log --oneline --decorate origin/main..HEAD
+git rev-list --count --merges origin/main..HEAD
+# Save the real screenshot as artifacts/git-history.png, then:
+git add artifacts/git-history.png
+git commit -m "docs: embed genuine terminal history screenshot"
+git push origin feature/watchlist
+```
+
+Publication status and the actual PR URL are recorded in [repository_audit.md](artifacts/repository_audit.md) once verified. The course portal submission remains the student's action.
