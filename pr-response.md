@@ -22,7 +22,11 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Comment 3 — Missing Test
 
-Pending implementation.
+[Original conversation comment](https://github.com/codepath/ai201-project6-cinelog-starter/pull/1#issuecomment-5062028682).
+
+**What I did:** Created `tests/test_watchlist.py` with `test_add_to_watchlist_nonexistent_film_raises`, modeled on `test_add_to_collection_nonexistent_film_raises`. It reuses the collection fixtures (isolated in-memory SQLite/app context and persisted user ID), supplies the same nonexistent UUID, and uses `pytest.raises(FilmNotFoundError)`. It additionally asserts no watchlist row was written. The service's expected exception was preserved.
+
+**How I verified:** Targeted watchlist file: **1 passed**; full suite: **7 passed**. No existing collection tests were edited.
 
 ## Comment 4 — Default Visibility
 
