@@ -1,0 +1,48 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.10.0, pytest-9.1.1, pluggy-1.7.0 -- D:\Productivity\School\Howard University\Courses\Fall 2026\CSCI 485\Project 6\ai201-project6-cinelog-starter\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Productivity\School\Howard University\Courses\Fall 2026\CSCI 485\Project 6\ai201-project6-cinelog-starter
+collecting ... collected 34 items
+
+tests/test_collection.py::test_add_to_collection_creates_entry PASSED    [  2%]
+tests/test_collection.py::test_add_to_collection_duplicate_raises PASSED [  5%]
+tests/test_collection.py::test_add_to_collection_nonexistent_film_raises PASSED [  8%]
+tests/test_collection.py::test_get_collection_returns_newest_first PASSED [ 11%]
+tests/test_watchlist.py::test_add_to_watchlist_nonexistent_film_raises PASSED [ 14%]
+tests/test_watchlist.py::test_watchlist_defaults_to_private_preference PASSED [ 17%]
+tests/test_watchlist.py::test_get_watchlist_newest_first_with_stable_ties PASSED [ 20%]
+tests/test_watchlist_api.py::test_uuid_round_trip_in_api_and_database PASSED [ 23%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body0] PASSED [ 26%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body1] PASSED [ 29%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body2] PASSED [ 32%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body3] PASSED [ 35%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body4] PASSED [ 38%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body5] PASSED [ 41%]
+tests/test_watchlist_api.py::test_invalid_film_id_request_returns_400[body6] PASSED [ 44%]
+tests/test_watchlist_api.py::test_missing_uuid_film_returns_404 PASSED   [ 47%]
+tests/test_watchlist_duplicates.py::test_add_to_watchlist_duplicate_raises PASSED [ 50%]
+tests/test_watchlist_duplicates.py::test_duplicate_request_returns_conflict PASSED [ 52%]
+tests/test_watchlist_removal.py::test_remove_from_watchlist_preserves_other_user PASSED [ 55%]
+tests/test_watchlist_removal.py::test_remove_nonexistent_entry_raises PASSED [ 58%]
+tests/test_watchlist_removal.py::test_remove_endpoint_persists_and_repeat_returns_404 PASSED [ 61%]
+tests/test_watchlist_removal.py::test_remove_rejects_invalid_id[body0] PASSED [ 64%]
+tests/test_watchlist_removal.py::test_remove_rejects_invalid_id[body1] PASSED [ 67%]
+tests/test_watchlist_removal.py::test_remove_rejects_invalid_id[body2] PASSED [ 70%]
+tests/test_watchlist_visibility.py::test_explicit_visibility_round_trip[True] PASSED [ 73%]
+tests/test_watchlist_visibility.py::test_explicit_visibility_round_trip[False] PASSED [ 76%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[false] PASSED [ 79%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[true] PASSED [ 82%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[0] PASSED [ 85%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[1] PASSED [ 88%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[None] PASSED [ 91%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[public5] PASSED [ 94%]
+tests/test_watchlist_visibility.py::test_visibility_rejects_non_boolean[public6] PASSED [ 97%]
+tests/test_watchlist_visibility.py::test_duplicate_cannot_change_visibility PASSED [100%]
+
+============================== warnings summary ===============================
+tests/test_watchlist_api.py::test_uuid_round_trip_in_api_and_database
+  D:\Productivity\School\Howard University\Courses\Fall 2026\CSCI 485\Project 6\ai201-project6-cinelog-starter\routes\films.py:41: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    film = Film.query.get(film_id)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 34 passed, 1 warning in 0.57s ========================

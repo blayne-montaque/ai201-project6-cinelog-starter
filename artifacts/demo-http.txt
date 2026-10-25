@@ -1,0 +1,39 @@
+﻿CineLog: isolated live HTTP demo (fresh SQLite database)
+GET / -> HTTP 404
+"No homepage (expected)"
+GET /films/ -> HTTP 200
+[{"average_rating": 0.0, "director": null, "genre": null, "id": "22222222-2222-4222-8222-222222222222", "poster_url": null, "title": "Alien", "year": 1979}, {"average_rating": 0.0, "director": null, "genre": null, "id": "33333333-3333-4333-8333-333333333333", "poster_url": null, "title": "Zodiac", "year": 2007}]
+GET /films/22222222-2222-4222-8222-222222222222 -> HTTP 200
+{"average_rating": 0.0, "director": null, "genre": null, "id": "22222222-2222-4222-8222-222222222222", "poster_url": null, "title": "Alien", "year": 1979}
+GET /watchlist/11111111-1111-4111-8111-111111111111 -> HTTP 200
+[]
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 201
+{"date_added": "2026-10-25T22:05:28.599879", "film_id": "22222222-2222-4222-8222-222222222222", "id": "4497f792-2007-4889-9801-9e317f97cb41", "public": false, "user_id": "11111111-1111-4111-8111-111111111111"}
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 409
+{"error": "Film '22222222-2222-4222-8222-222222222222' is already in this user's watchlist"}
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 404
+{"error": "No film found with id '00000000-0000-0000-0000-000000000000'"}
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 400
+{"error": "film_id must be a UUID string"}
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 400
+{"error": "public must be a boolean"}
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 201
+{"date_added": "2026-10-25T22:05:28.661583", "film_id": "33333333-3333-4333-8333-333333333333", "id": "c2e7b3ce-be43-44be-96b5-2eb4202034be", "public": true, "user_id": "11111111-1111-4111-8111-111111111111"}
+GET /watchlist/11111111-1111-4111-8111-111111111111 -> HTTP 200
+[{"average_rating": 0.0, "date_added": "2026-01-02T00:00:00", "director": null, "genre": null, "id": "33333333-3333-4333-8333-333333333333", "poster_url": null, "public": true, "title": "Zodiac", "year": 2007}, {"average_rating": 0.0, "date_added": "2026-01-01T00:00:00", "director": null, "genre": null, "id": "22222222-2222-4222-8222-222222222222", "poster_url": null, "public": false, "title": "Alien", "year": 1979}]
+DELETE /watchlist/11111111-1111-4111-8111-111111111111/remove -> HTTP 200
+{"message": "Removed from watchlist"}
+DELETE /watchlist/11111111-1111-4111-8111-111111111111/remove -> HTTP 404
+{"error": "Film '22222222-2222-4222-8222-222222222222' is not in this user's watchlist"}
+GET /watchlist/11111111-1111-4111-8111-111111111111 -> HTTP 200
+[{"average_rating": 0.0, "date_added": "2026-01-02T00:00:00", "director": null, "genre": null, "id": "33333333-3333-4333-8333-333333333333", "poster_url": null, "public": true, "title": "Zodiac", "year": 2007}]
+POST /watchlist/11111111-1111-4111-8111-111111111111/add -> HTTP 201
+{"date_added": "2026-10-25T22:05:28.724874", "film_id": "22222222-2222-4222-8222-222222222222", "id": "18bed9ad-7de4-4fd9-a6a7-16cd65e0e384", "public": false, "user_id": "11111111-1111-4111-8111-111111111111"}
+DELETE /watchlist/11111111-1111-4111-8111-111111111111/remove -> HTTP 200
+{"message": "Removed from watchlist"}
+DELETE /watchlist/11111111-1111-4111-8111-111111111111/remove -> HTTP 200
+{"message": "Removed from watchlist"}
+GET /watchlist/11111111-1111-4111-8111-111111111111 -> HTTP 200
+[]
+PASS: live HTTP add, duplicate, missing film, UUID validation, visibility, order, removal, and cleanup
+Visibility is sharing metadata; this starter has no authentication or access filtering.

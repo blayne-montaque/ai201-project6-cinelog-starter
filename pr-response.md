@@ -2,7 +2,9 @@
 
 ## AI Usage
 
-Codex is carrying out the implementation, review analysis, design reasoning, tests, Git operations, and documentation at the user's request. This document will report the completed work and actual evidence; it does not claim independent human authorship.
+Codex performed the implementation, review analysis, design reasoning, tests, Git operations, and documentation at the user's explicit request. It read the source before fetching the actual review discussion, traced `add_to_collection()` and verified its duplicate exception and persistence behavior against the code, then addressed each comment sequentially. It authored and executed the tests and real HTTP demo, resolved the UUID conflict, and checked the conventional commit history. No external LLM API or API key was used by the application.
+
+For Comments 4 and 5, the user requested autonomous design analysis rather than supplying a human-authored draft. Codex compared public/private defaults and alphabetical/recency/oldest-first ordering, then stress-tested its positions against the actual model and routes. The visibility reasoning explicitly acknowledges that the starter's flag does not enforce privacy; the sorting decision includes a deterministic tie-breaker and fixed-date tests. These are AI-authored arguments grounded in CineLog, not claims of independent human reasoning. The course brief recommends student-authored design decisions and deduplication code; this submission discloses the broader AI involvement accurately so the student and grader can assess it.
 
 ## Comment 1 — Rename
 
@@ -72,7 +74,50 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## PR Description
 
-To be finalized after verification.
+CineLog's watchlist now reliably saves future watches, rejects repeated additions, lists the newest additions first, and removes individual memberships. This completes all six comments from the original CodePath review and all three stretch items on the authentic recovered feature branch.
+
+- Renamed the service to `add_to_watchlist()` and updated every call site.
+- Matched `add_to_collection()`: duplicate user/film pairs raise a domain error and return HTTP 409. A database unique constraint also protects the pair.
+- Added the requested nonexistent-film test and independent coverage for user isolation, persistence, invalid input, and removal.
+- Performed a real rebase onto UUID main `57ec3f9`. Resolved the actual `models.py` conflict by retaining `String(36)` and `index=True`; a separate UUID fix validates and normalizes API input.
+- Added `remove_from_watchlist()` and DELETE `/watchlist/<user_id>/remove`.
+- Added the explicit Boolean `public` parameter at the service and POST endpoint.
+
+**Visibility decision:** `public=False` by default. Saving a tentative future watch should record an opt-in sharing preference. CineLog has no discovery feed that benefits from automatically marking these entries public, and CollectionEntry has no visibility field to inherit. Public-by-default would reduce sharing friction but assume intent; callers can opt in with `public: true`. This field is metadata only: the starter has no authentication or visibility enforcement, and GET returns all entries for the requested user. Duplicate additions do not update visibility.
+
+**Sort decision:** Newest `date_added` first, then entry ID ascending for stable ties. This accepts the reviewer's point that recently saved films should be easy to find and matches `get_collection()`. Alphabetical lookup and oldest-first queue traversal are valid alternatives, but neither prioritizes the latest addition. Tests distinguish these policies using fixed timestamps and nonalphabetical titles.
+
+**Endpoint contract:** POST `/watchlist/<user_id>/add` takes `{"film_id":"<uuid>","public":false}`; omit public to use False, or send true to opt in. Only JSON Booleans are accepted. Successful add returns 201; duplicate 409; absent catalog UUID 404; invalid UUID or visibility 400. GET `/watchlist/<user_id>` returns film dictionaries with public/date_added. DELETE `/watchlist/<user_id>/remove` takes `{"film_id":"<uuid>"}`, returns 200 on removal, or 404 when membership is absent.
+
+**Manual verification (Windows PowerShell):**
+
+1. From the repository root, install dependencies if needed:
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   ```
+2. Run the suite and automatic live HTTP demonstration:
+   ```powershell
+   .\.venv\Scripts\python.exe -m pytest tests/ -v
+   .\.venv\Scripts\python.exe demo_watchlist.py
+   ```
+   The demo starts a real local server with a fresh temporary SQLite database. It checks 201 add, 409 repeat, 404 absent film, 400 invalid inputs, both visibility values, Zodiac before older Alien, removal, and empty-list cleanup.
+3. To verify the project-supported server command, run:
+   ```powershell
+   .\.venv\Scripts\python.exe demo_watchlist.py --prepare
+   ```
+   Copy the printed `$env:DATABASE_URL = 'sqlite:///...'` command, then run `.\.venv\Scripts\python.exe app.py`. In a second terminal:
+   ```powershell
+   .\.venv\Scripts\python.exe demo_watchlist.py --base-url http://127.0.0.1:5000
+   ```
+   Expected `/` response is 404 because there is no homepage. Stop the server with Ctrl+C. For individual curl requests and a two-minute narration, see [DEMO_GUIDE.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/DEMO_GUIDE.md).
+4. Inspect `git log --oneline --decorate origin/main..HEAD`; `git rev-list --merges origin/main..HEAD` should print nothing.
+
+**Verification:** Baseline 4/4 passed; final 34/34 passed. Both the isolated helper and `app.py` server completed the real HTTP walkthrough. One existing SQLAlchemy deprecation warning remains in the unchanged catalog route's `Film.query.get()`. No test failures remain. History was cleaned with a genuine interactive rebase; no merge commits were introduced.
+
+**Scope and disclosure:** This starter does not validate user existence or authorize callers; use seeded users. `create_all()` does not migrate old SQLite files, so use the fresh --prepare database. No API keys are needed. Codex performed the implementation, source-grounded design reasoning, testing, Git work, and documentation at the user's request. This is not a claim of independent human authorship or upstream approval.
+
+See [pr-response.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/pr-response.md) for the six substantive review responses, exact comment links, reasoning, genuine history screenshot, and evidence.
 
 ## Verification and Commit History
 
