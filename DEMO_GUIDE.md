@@ -2,6 +2,8 @@
 
 CineLog is a REST API for logging watched films and saving future watches. This contribution completes the reviewed watchlist: consistent naming, duplicate rejection, UUID support, newest-first retrieval, explicit sharing preferences, and removal. It has no browser frontend. `public` records a preference; it does not restrict access in this unauthenticated starter.
 
+**Current delivery status:** The feature branch is published and all 34 tests pass. Two required submission items remain manual: capture/commit the terminal screenshot and create the open same-fork PR. GitHub integration returned 403 for PR creation; browser automation then stopped because it could not confidently identify the URL. Use [the prepared comparison](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/compare/main...feature/watchlist?expand=1) and the body in pr-response.md. Complete these steps before narrating the PR as open.
+
 ## Fast recording path
 
 Open PowerShell and run:
@@ -77,7 +79,7 @@ Invoke-RestMethod "$base/watchlist/$userId" | Format-Table title,id,public,date_
 
 Open `pr-response.md`, Comment 6. The authentic original branch was recovered from upstream. During `git rebase upstream/main`, models.py conflicted because main changed WatchlistEntry.film_id to String(36) while the old feature added index=True to an integer column. Resolution combined the UUID type with the feature's index and retained all main UUID changes. A separate fix validates UUID API inputs. The real interactive rebase rewords the original rough message and retains the other logical changes. [Git evidence](artifacts/git-workflow.txt) records backup refs and reflog operations.
 
-Use `git log --oneline --decorate origin/main..HEAD` and the empty `git rev-list --merges origin/main..HEAD` output. Open the [feature branch](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/tree/feature/watchlist), then its Pull requests tab. Select the open watchlist PR, confirm `feature/watchlist` into this fork's `main`, and show its description plus the rendered response document and embedded history screenshot. The audit records the verified PR URL after publication.
+Use `git log --oneline --decorate origin/main..HEAD` and the empty `git rev-list --merges origin/main..HEAD` output. Once the manual PR is created, open the [feature branch](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/tree/feature/watchlist), then its Pull requests tab. Select the open watchlist PR, confirm `feature/watchlist` into this fork's `main`, and show its description plus the rendered response document and embedded history screenshot. Record the actual PR URL in the audit after creation; no PR currently exists.
 
 ## Approximately two-minute spoken walkthrough
 

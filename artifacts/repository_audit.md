@@ -25,7 +25,8 @@ Target: all required features (25 points) and all three stretch features (3 poin
 | Demo preparation | [DEMO_GUIDE.md](../DEMO_GUIDE.md), demo_watchlist.py; `5ac2428` | Complete; repeatable isolated DB, PowerShell commands, individual curl examples, narration, checklist |
 | Repository hygiene | .gitignore checked against every required pattern; tracked file inventory | Complete; no keys, .env, databases, caches, or environments tracked; existing collection tests unchanged |
 | Real embedded history screenshot | pr-response.md image link; intended artifacts/git-history.png | **Incomplete:** computer-use runtime blocks PowerShell; no image file exists. Exact manual capture/commit steps are in the response document. No fabricated image. |
-| Published feature branch and OPEN same-fork PR | Origin restricted to blayne-montaque fork; main untouched | Pending publication and remote verification |
+| Published feature branch | [feature/watchlist](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/tree/feature/watchlist); origin restricted to blayne-montaque fork | Complete; normal push created the remote branch; local branch tracks origin/feature/watchlist; main unchanged |
+| OPEN same-fork PR | Prepared exact body in pr-response.md; intended base main, head feature/watchlist, both in blayne-montaque/ai201-project6-cinelog-starter | **Incomplete:** GitHub connector returned HTTP 403 “Resource not accessible by integration.” Browser fallback stopped because the runtime could not confidently determine the current browser URL. No PR URL exists or is claimed. |
 
 ## Limits and remaining verification
 
@@ -33,4 +34,20 @@ Target: all required features (25 points) and all three stretch features (3 poin
 - Existing SQLite files need a migration outside this task; demo preparation always creates a fresh isolated file.
 - Network cloning initially failed inside the sandbox and succeeded after permitted network escalation. This was an environment restriction, not a baseline test failure.
 - No upstream PR was modified. No merge or course-portal submission is authorized or claimed.
-- Screenshot remains manual because the runtime rejected PowerShell with “product policy blocks this app.” Shell-launched consoles did not expose a capturable window. Publication checks will be updated when completed.
+- Screenshot remains manual because the runtime rejected PowerShell with “product policy blocks this app.” Shell-launched consoles did not expose a capturable window.
+- The branch was published successfully with `git push -u origin feature/watchlist`; no force push was needed because the branch did not previously exist. Backup branches were not pushed. Main was not changed.
+- The exact PR Description was extracted from pr-response.md and passed to GitHub create_pull_request with the correct same-fork repository, head feature/watchlist, base main, and draft=False. The integration rejected creation with 403. A search found no existing open feature/watchlist-to-main PR before the attempted creation. Browser automation ended with: “could not determine the current browser URL on Windows with enough confidence to enforce policy.” No browser security control was bypassed.
+- Remote Markdown content can be fetched through the GitHub connector. Visual browser rendering and image rendering could not be verified because browser automation stopped and the required screenshot is absent.
+
+## Exact remaining steps
+
+1. Capture the real terminal history as `artifacts/git-history.png`, following the commands in pr-response.md; commit and push the image. Update this audit's screenshot status after verifying it renders.
+2. Open [the same-fork comparison](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/compare/main...feature/watchlist?expand=1). Confirm base repository **blayne-montaque/ai201-project6-cinelog-starter**, base **main**, and compare **feature/watchlist**. Use title **feat: complete reviewed watchlist with UUIDs, visibility, and removal** and paste the exact PR Description section from pr-response.md. Create an OPEN PR; do not merge it. Record its actual URL here and in DEMO_GUIDE.md.
+3. If GitHub CLI is installed and authenticated later, these PowerShell commands create the same PR with the prepared body (gh is not currently installed in this environment):
+
+```powershell
+.\.venv\Scripts\python.exe -c "from pathlib import Path; text=Path('pr-response.md').read_text(encoding='utf-8'); Path('../cinelog-pr-body.md').write_text(text.split('## PR Description\n',1)[1].split('\n## Verification and Commit History',1)[0].strip(), encoding='utf-8')"
+gh pr create --repo blayne-montaque/ai201-project6-cinelog-starter --base main --head feature/watchlist --title 'feat: complete reviewed watchlist with UUIDs, visibility, and removal' --body-file ../cinelog-pr-body.md
+```
+
+4. Verify GitHub renders the response document and its actual image. Submit the branch URL through the course portal. The screenshot and open PR are required deliverables, so a full 28/28-ready submission is **not yet claimed**.
