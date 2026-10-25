@@ -64,7 +64,11 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Stretch Features
 
-Pending removal, independent edge-case tests, and explicit visibility.
+**1. Remove from watchlist:** `remove_from_watchlist(user_id, film_id)` follows `remove_from_collection()`: query the exact user/film pair, raise `NotInWatchlistError` when absent, otherwise delete, commit, and return True. `DELETE /watchlist/<user_id>/remove` accepts `{"film_id":"<uuid>"}`, returns JSON 200 on success, 404 for absent membership, and 400 for invalid input. It does not delete the catalog film. The six removal cases pass; full suite at this milestone: **24 passed**.
+
+**2. Independent stretch test:** `test_remove_from_watchlist_preserves_other_user` deliberately puts the same film on two users' watchlists and removes only one membership. This checks that both deduplication and removal are scoped to the user/film pair, rather than treating a film as globally unique or deleting another user's data. It reloads the database and verifies the other entry's ID, owner, and retained catalog film. Additional cases verify duplicates, UUID persistence, ordering, and missing removal.
+
+**3. Explicit visibility:** Implementation pending.
 
 ## PR Description
 

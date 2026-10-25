@@ -10,6 +10,8 @@ from services.watchlist_service import (
     add_to_watchlist,
     get_watchlist,
     AlreadyInWatchlistError,
+    remove_from_watchlist,
+    NotInWatchlistError,
 )
 from services.collection_service import FilmNotFoundError
 
@@ -53,3 +55,17 @@ def add_film(user_id):
         return jsonify({"error": str(e)}), 404
     except AlreadyInWatchlistError as e:
         return jsonify({"error": str(e)}), 409
+
+
+@watchlist_bp.route("/<user_id>/remove", methods=["DELETE"])
+def remove_film(user_id):
+    """DELETE /watchlist/<user_id>/remove with body {"film_id": "<uuid>"}."""
+    data = request.get_json()
+    try:
+        film_id = _parse_film_id(data)
+        remove_from_watchlist(user_id=user_id, film_id=film_id)
+        return jsonify({"message": "Removed from watchlist"}), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    except NotInWatchlistError as e:
+        return jsonify({"error": str(e)}), 404
