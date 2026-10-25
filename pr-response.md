@@ -30,7 +30,15 @@ Codex is carrying out the implementation, review analysis, design reasoning, tes
 
 ## Comment 4 — Default Visibility
 
-Pending source-grounded design decision.
+[Original conversation comment](https://github.com/codepath/ai201-project6-cinelog-starter/pull/1#issuecomment-5062028816).
+
+**Position:** Default `WatchlistEntry.public` to **False**, recording an opt-in sharing preference for each saved film. Optimize for quickly saving a possible future watch without implicitly declaring that interest public. A watchlist is provisional intent; `CollectionEntry` records already-watched films with optional ratings, and has no visibility field whose default we can legitimately inherit.
+
+**CineLog evidence:** `add_to_watchlist()` creates an entry and `get_watchlist()` serializes its `public` field. The starter has catalog browsing and collections but no discovery feed, authenticated viewer, or visibility filtering. Public-by-default could populate a future community feed and remove a sharing step, but there is no implemented discovery benefit to balance the accidental-sharing preference it records today. The model default is False; omitted service/route settings inherit it (and the stretch parameter will make that default explicit).
+
+**Tradeoff and counterargument:** A reviewer could reasonably prefer consistency with the starter's openly readable collections and its community positioning. Opt-in costs a conscious `public: true` choice and could reduce future social participation. That is preferable to assuming consent for every tentative film interest. An explicit Boolean supports both choices; duplicates must not silently change the original setting. Crucially, False is **metadata, not enforced privacy**: GET still returns all entries for the requested user. Real private sharing requires authentication and owner-aware authorization, outside this assignment. The PR and demo disclose this limitation instead of promising protection the code does not provide.
+
+**Verification:** POST with omitted visibility, a new database session, and GET all report False. Targeted: **2 passed**; full suite: **8 passed**. Codex made and stress-tested this decision from the actual code at the user's request.
 
 ## Comment 5 — Sort Order
 
