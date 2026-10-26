@@ -1,0 +1,12 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.10.0, pytest-9.1.1, pluggy-1.7.0 -- D:\Productivity\School\Howard University\Courses\Fall 2026\CSCI 485\Project 6\ai201-project6-cinelog-starter\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Productivity\School\Howard University\Courses\Fall 2026\CSCI 485\Project 6\ai201-project6-cinelog-starter
+collecting ... collected 4 items
+
+tests/test_collection.py::test_add_to_collection_creates_entry PASSED    [ 25%]
+tests/test_collection.py::test_add_to_collection_duplicate_raises PASSED [ 50%]
+tests/test_collection.py::test_add_to_collection_nonexistent_film_raises PASSED [ 75%]
+tests/test_collection.py::test_get_collection_returns_newest_first PASSED [100%]
+
+============================== 4 passed in 0.44s ==============================
