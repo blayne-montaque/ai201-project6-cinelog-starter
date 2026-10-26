@@ -110,14 +110,14 @@ CineLog's watchlist now reliably saves future watches, rejects repeated addition
    ```powershell
    .\.venv\Scripts\python.exe demo_watchlist.py --base-url http://127.0.0.1:5000
    ```
-   Expected `/` response is 404 because there is no homepage. Stop the server with Ctrl+C. For individual curl requests and a two-minute narration, see [DEMO_GUIDE.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/DEMO_GUIDE.md).
+   Expected `/` response is 404 because there is no homepage. Stop the server with Ctrl+C. The [HTTP demo helper](demo_watchlist.py) exercises the endpoints; its recorded responses are available in the verification evidence below.
 4. Inspect `git log --oneline --decorate origin/main..HEAD`; `git rev-list --merges origin/main..HEAD` should print nothing.
 
 **Verification:** Baseline 4/4 passed; final 34/34 passed. Both the isolated helper and `app.py` server completed the real HTTP walkthrough. One existing SQLAlchemy deprecation warning remains in the unchanged catalog route's `Film.query.get()`. No test failures remain. History was cleaned with a genuine interactive rebase; no merge commits were introduced.
 
 **Scope and disclosure:** This starter does not validate user existence or authorize callers; use seeded users. `create_all()` does not migrate old SQLite files, so use the fresh --prepare database. No API keys are needed. Codex performed the implementation, source-grounded design reasoning, testing, Git work, and documentation at the user's request. This is not a claim of independent human authorship or upstream approval.
 
-See [pr-response.md](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/blob/feature/watchlist/pr-response.md) for the six substantive review responses, exact comment links, reasoning, history evidence, and the required screenshot placeholder. **Remaining manual item:** capture `git log --oneline --decorate` on `feature/watchlist`, with the branch visible, as `artifacts/git-history.png`. The computer-use runtime blocked PowerShell, so no screenshot has been fabricated or claimed.
+This document contains the six substantive review responses, exact comment links, design reasoning, technical evidence, and the actual terminal screenshot embedded below. [PR #1](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/pull/1) is open from `feature/watchlist` to `main` within the user's fork.
 
 ## Verification and Commit History
 
@@ -131,22 +131,10 @@ Original branch and architecture are recorded in [orientation](artifacts/orienta
 - Codex reviewed the log against CONTRIBUTING.md's conventional format and one-logical-change rule. Original feature, rename (`1c258cb`), duplicate fix (`1fe2094`), requested test (`81c22d4`), UUID fix (`ec71f5f`), removal (`4b79651`), and explicit visibility (`bf23115`) remain separate. Test commits are separate as required by that contribution guide. `git rev-list --merges origin/main..HEAD` prints no commits, and the branch descends from main's UUID refactor.
 - `.gitignore` matches every requested pattern. No databases, environment files, caches, credentials, or virtual environments are tracked. No original collection tests were edited.
 
-### Required screenshot — outstanding manual step
+### Required terminal screenshot
 
-The supported computer-use runtime refused PowerShell with **“product policy blocks this app.”** Attempts to open a dedicated console through the shell did not expose a capturable window. No fake screenshot was created, and `artifacts/git-history.png` does not yet exist. The following is the required image link, intentionally retained for the real capture:
+The actual terminal screenshot is tracked at `artifacts/git-history.png`, added in commit `279b81b`. It shows `feature/watchlist` and the conventional feature history through `422b7b4`. Later documentation-only commits add the screenshot, remove the optional demo guide, and update the submission status; the screenshot remains an authentic record of the completed implementation history.
 
 ![Clean conventional commit history on feature/watchlist](artifacts/git-history.png)
 
-To finish, open PowerShell in the repository, run the following, and use Windows Snipping Tool to capture the actual terminal with the branch name and log visible. Save the PNG at the exact image path, then commit and push it. One final screenshot documentation commit after capture is expected; no recursive screenshot/commit loop is needed.
-
-```powershell
-git branch --show-current
-git --no-pager log --oneline --decorate origin/main..HEAD
-git rev-list --count --merges origin/main..HEAD
-# Save the real screenshot as artifacts/git-history.png, then:
-git add artifacts/git-history.png
-git commit -m "docs: embed genuine terminal history screenshot"
-git push origin feature/watchlist
-```
-
-**Publication:** [feature/watchlist is published](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/tree/feature/watchlist) and tracks origin. The fork's main remains unchanged. **The required open PR could not be created:** the GitHub integration returned 403 “Resource not accessible by integration”; the browser fallback stopped because it could not determine the current URL confidently. No actual PR URL is claimed. The exact prepared body is above. Use [this same-fork comparison](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/compare/main...feature/watchlist?expand=1) to create the PR with head feature/watchlist and base main. [repository_audit.md](artifacts/repository_audit.md) contains exact remaining commands. Browser rendering and the nonexistent image could not be visually verified. The screenshot, open PR, and course portal submission remain the student's actions.
+**Publication:** [feature/watchlist is published](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/tree/feature/watchlist) and tracks origin. [PR #1](https://github.com/blayne-montaque/ai201-project6-cinelog-starter/pull/1) is open and unmerged, with head `feature/watchlist` and base `main` in `blayne-montaque/ai201-project6-cinelog-starter`. The fork's main remains unchanged. The screenshot and open PR requirements are complete; [repository_audit.md](artifacts/repository_audit.md) records their evidence. Course portal submission is outside this documentation cleanup.
